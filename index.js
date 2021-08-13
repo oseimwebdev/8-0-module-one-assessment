@@ -28,7 +28,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles(movies) {}
+function getAllMovieTitles(movies) {
+  let movieTitlesArr = [];
+
+  for (let i = 0; i < movies.length; i++) {
+    movieTitlesArr.push(movies[i].title);
+  }
+  return movieTitlesArr;
+}
 
 /**
  * getHighestMetascore()
@@ -41,7 +48,16 @@ function getAllMovieTitles(movies) {}
  *  getHighestMetascore(movies);
  *  //> 96
  */
-function getHighestMetascore() {}
+function getHighestMetascore(movies) {
+  let highestMetascore = 0;
+
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].metascore > highestMetascore) {
+      highestMetascore = movies[i].metascore;
+    }
+  }
+  return highestMetascore;
+}
 
 /**
  * getAverageIMDBRating()
@@ -54,7 +70,16 @@ function getHighestMetascore() {}
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+function getAverageIMDBRating(movies) {
+  let num = 0;
+  let aveImdbRate;
+
+  for (let i = 0; i < movies.length; i++) {
+    num += movies[i].imdbRating/10;
+    aveImdbRate = num.toFixed(2);
+  }
+  return aveImdbRate;
+}
 
 /**
  * countByRating()
@@ -67,7 +92,19 @@ function getAverageIMDBRating() {}
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+function countByRating(movies) {
+  let ratingCount = {};
+
+  for (let i = 0; i < movies.length; i++) {
+    if (!ratingCount[movies[i].rated]) {
+      ratingCount[movies[i].rated] = 1;
+    } else {
+      ratingCount[movies[i].rated] += 1;
+    }
+  }
+  return ratingCount;
+}
+
 
 /**
  * findById()
@@ -83,15 +120,30 @@ function countByRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (movies.length === 0) {
+    return null; 
+  }
+
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].imdbID === id) {
+      return movies[i];
+    }
+  }
+  
+}
+console.log(findById(exampleMovies, "tt1979376"));
 
 /**
  * filterByGenre()
  * -----------------------------
- * Returns all movie objects with a matching genre. Case-insensitive. If the inputted `movies` array is empty or no movies match the inputted `genre`, return `[]`.
- * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
+ * Returns all movie objects with a matching genre. Case-insensitive. If the inputted 
+ * `movies` array is empty or no movies match the inputted `genre`, return `[]`.
+ * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example
+ *  of this array.
  * @param {string} genre - The genre of a movie. (e.g. "Fantasy")
- * @returns {Object[]} An array of movies where at least one of the genres matches the `genre` inputted.
+ * @returns {Object[]} An array of movies where at least one of the genres matches the 
+ * `genre` inputted.
  *
  * EXAMPLE:
  *  filterByGenre(movies, "Mystery");
@@ -105,7 +157,16 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  let genreArr = [];
+
+  for (let i=0; i<movies.length; i++) {
+    if (movies[i] === genre) {
+
+    }
+  }
+  return genreArr;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -129,7 +190,16 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  let releaseYearArr = [];
+
+  for (let i=0; i<movies.length; i++) {
+    if (movies[i].released <= year) {
+
+    }
+  }
+  return releaseYearArr;
+}
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -142,7 +212,16 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie() {}
+function getBiggestBoxOfficeMovie(movies) {
+  let movieWithHighestAmount = "";
+
+  for (let i=0; i<movies.length; i++) {
+    if (movies[i].boxOffice > movieWithHighestAmount) {
+      movieWithHighestAmount = movies[i].title;
+    }
+  }
+  return movieWithHighestAmount;
+}
 
 // Do not change anything below this line.
 module.exports = {
